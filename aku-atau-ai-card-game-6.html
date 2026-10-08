@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKU atau AI? — Card Game BK</title>
+<style>
+:root{
+  --cream:#f7f2ea; --paper:#fffdf9; --ink:#2f2a30; --muted:#756d75;
+  --mauve:#80677d; --mauve-soft:#eee5ed; --line:#ded4dc;
+  --good:#55745c; --warn:#8a654e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+button,textarea{font:inherit}
+button{cursor:pointer}
+.nav{position:sticky;top:0;z-index:10;background:rgba(247,242,234,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1050px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-weight:900;letter-spacing:-.04em}.logo span{color:var(--mauve)}
+.nav button{border:0;background:none;color:var(--muted);font-weight:700;padding:8px}
+.wrap{max-width:1050px;margin:auto;padding:34px 20px 60px}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center;padding:55px 0 45px}
+.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.16em;font-weight:800;color:var(--mauve)}
+h1{font-size:clamp(48px,8vw,86px);line-height:.9;letter-spacing:-.07em;margin:12px 0 18px}
+h2{font-size:clamp(27px,4vw,42px);letter-spacing:-.04em;margin:0 0 12px}
+h3{margin:0 0 8px}
+p{line-height:1.7;color:var(--muted)}
+.lead{font-size:18px;max-width:650px}
+.pill{display:inline-block;background:var(--mauve-soft);padding:7px 11px;border-radius:999px;font-size:12px;font-weight:800;margin:4px}
+.cta{border:0;background:var(--mauve);color:white;padding:15px 20px;border-radius:14px;font-weight:800;min-height:50px}
+.secondary{border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:13px 17px;border-radius:14px;font-weight:750}
+.hero-card{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:25px;transform:rotate(2deg);box-shadow:0 18px 45px rgba(60,45,60,.09)}
+.card-symbol{font-size:55px;margin-bottom:20px}
+.section{padding:55px 0}
+.hidden{display:none!important}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.info{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:20px}
+.game-shell{max-width:760px;margin:10px auto}
+.progress{height:7px;background:#e4dce3;border-radius:20px;overflow:hidden;margin:15px 0 25px}
+.progress>div{height:100%;background:var(--mauve);transition:.3s}
+.game-card{background:var(--paper);border:1px solid var(--line);border-radius:25px;padding:25px;box-shadow:0 15px 35px rgba(60,45,60,.07)}
+.case{font-size:20px;line-height:1.65;margin:20px 0}
+.choices{display:grid;gap:10px}
+.choice{background:white;border:1px solid var(--line);border-radius:15px;padding:15px;text-align:left;line-height:1.5}
+.choice:hover{border-color:var(--mauve);background:var(--mauve-soft)}
+.feedback{margin-top:18px;background:var(--mauve-soft);padding:17px;border-radius:16px;line-height:1.65}
+.reflect{margin-top:12px;border-left:3px solid var(--mauve);padding:5px 0 5px 15px}
+textarea{width:100%;min-height:115px;border:1px solid var(--line);border-radius:14px;padding:14px;background:white;resize:vertical}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.actions>*{flex:1;min-width:170px}
+.result{background:var(--paper);border:1px solid var(--line);border-radius:25px;padding:28px}
+footer{border-top:1px solid var(--line);padding:25px 20px;text-align:center;color:var(--muted);font-size:13px}
+@media(max-width:760px){
+ .hero{grid-template-columns:1fr;padding-top:30px}.hero-card{transform:none}
+ .grid{grid-template-columns:1fr}
+ .wrap{padding-left:16px;padding-right:16px}
+ h1{font-size:58px}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">AKU <span>atau</span> AI?</div>
+    <div>
+      <button onclick="showPage('home')">Beranda</button>
+      <button onclick="showPage('about')">Tentang</button>
+      <button onclick="showPage('guide')">Panduan</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+<section id="home" class="page">
+  <div class="hero">
+    <div>
+      <div class="kicker">Media layanan BK • Card Game Digital</div>
+      <h1>AKU<br><span style="color:var(--mauve)">atau</span> AI?</h1>
+      <p class="lead">AI boleh membantu, tapi jangan sampai menggantikan proses berpikirmu.</p>
+      <p>Game reflektif untuk mahasiswa agar lebih sadar dalam menggunakan AI generatif untuk kegiatan akademik.</p>
+      <div style="margin:15px 0 20px">
+        <span class="pill">Literasi AI</span><span class="pill">Kemandirian Belajar</span><span class="pill">Refleksi</span>
+      </div>
+      <button class="cta" onclick="startGame()">Mulai Game →</button>
+    </div>
+    <div class="hero-card">
+      <div class="card-symbol">🤖</div>
+      <div class="kicker">Kartu kasus</div>
+      <h3>“AI bisa membantu. Tapi siapa yang tetap harus berpikir?”</h3>
+      <p>Lewati beberapa situasi akademik, pilih responsmu, lalu lihat apa yang bisa kamu pelajari dari pilihan tersebut.</p>
+    </div>
+  </div>
+  <div class="section">
+    <h2>Bukan tentang anti-AI.</h2>
+    <p style="max-width:720px">Game ini mengajak kamu menemukan titik tengah: kapan AI menjadi alat bantu belajar dan kapan penggunaannya mulai menggantikan proses belajar.</p>
+    <div class="grid">
+      <div class="info"><b>01 · Sadari</b><p>Kenali kebiasaanmu ketika menggunakan AI.</p></div>
+      <div class="info"><b>02 · Pilih</b><p>Hadapi kasus yang dekat dengan kehidupan akademik.</p></div>
+      <div class="info"><b>03 · Refleksi</b><p>Tentukan batas penggunaan AI yang sesuai untukmu.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="game" class="page hidden">
+  <div class="game-shell">
+    <div class="kicker">Game</div>
+    <h2 id="gameTitle">Check-in</h2>
+    <div class="progress"><div id="bar" style="width:10%"></div></div>
+    <div id="gameContent"></div>
+  </div>
+</section>
+
+<section id="resultPage" class="page hidden">
+  <div class="game-shell">
+    <div class="kicker">Selesai</div>
+    <h2>Gambaran Kebiasaan AI-ku</h2>
+    <div class="result">
+      <div class="pill" id="profilePill">Reflektif</div>
+      <h3 id="resultTitle" style="margin-top:15px"></h3>
+      <p id="resultText"></p>
+      <h3>Komitmen pribadiku</h3>
+      <textarea id="commitment" placeholder="Contoh: Aku akan mencoba memahami soal sendiri sebelum meminta bantuan AI..."></textarea>
+      <div class="actions">
+        <button class="cta" onclick="saveCommitment()">Simpan Komitmen</button>
+        <button class="secondary" onclick="startGame()">Main Lagi</button>
+      </div>
+      <div id="saved" class="feedback hidden"></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="page hidden">
+  <div class="section">
+    <div class="kicker">Tentang media</div>
+    <h2>AKU atau AI?</h2>
+    <p style="max-width:760px">AKU atau AI? merupakan media layanan Bimbingan dan Konseling berbasis teknologi yang dirancang dalam bentuk card game digital. Media ini membantu mahasiswa merefleksikan penggunaan AI generatif dalam kehidupan akademik, khususnya berkaitan dengan kemandirian belajar, berpikir kritis, dan pengambilan keputusan.</p>
+    <div class="grid">
+      <div class="info"><b>Sasaran</b><p>Mahasiswa pengguna AI generatif.</p></div>
+      <div class="info"><b>Jenis layanan</b><p>Layanan informasi dan pengembangan pribadi-belajar.</p></div>
+      <div class="info"><b>Tujuan</b><p>Mendorong penggunaan AI yang sadar, kritis, dan bertanggung jawab.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="guide" class="page hidden">
+  <div class="section">
+    <div class="kicker">Panduan</div>
+    <h2>Cara bermain</h2>
+    <div class="grid">
+      <div class="info"><b>1. Check-in</b><p>Jawab pertanyaan awal berdasarkan kebiasaanmu sendiri.</p></div>
+      <div class="info"><b>2. Case</b><p>Baca kasus lalu pilih tindakan yang menurutmu paling tepat.</p></div>
+      <div class="info"><b>3. Think</b><p>Baca pertanyaan refleksi dan pikirkan alasan di balik pilihanmu.</p></div>
+    </div>
+    <div class="info" style="margin-top:15px"><b>4. Feedback & Action</b><p>Pelajari konsekuensi pilihanmu, kemudian buat satu komitmen kecil untuk penggunaan AI yang lebih bijak.</p></div>
+  </div>
+</section>
+</main>
+
+<footer>AKU atau AI? · Media Layanan Bimbingan dan Konseling · Prototype</footer>
+
+<script>
+const cases=[
+ {theme:"AKADEMIK",text:"Kamu mendapat tugas membuat makalah. Karena ingin cepat selesai, kamu meminta AI membuat seluruh makalah dari pendahuluan sampai daftar pustaka, lalu langsung mengumpulkannya.",choices:["Langsung menggunakan hasil AI karena tugas sudah selesai.","Menggunakan AI sebagai draft, lalu membaca, mengecek, memperbaiki, dan menulis ulang dengan pemahaman sendiri.","Tidak boleh menggunakan AI sama sekali.","Mengumpulkan hasil AI tanpa perlu mengecek."],best:1,feedback:"AI dapat membantu membuat kerangka atau memberi ide. Namun, ketika seluruh proses diserahkan kepada AI dan hasilnya langsung dikumpulkan, kesempatan untuk memahami materi dan melatih kemampuan menulis menjadi berkurang.",think:"Bagian mana dari tugas yang seharusnya tetap kamu kerjakan sendiri agar kamu benar-benar memahami materi?"},
+ {theme:"BERPIKIR KRITIS",text:"AI memberikan jawaban yang terlihat sangat meyakinkan dan mencantumkan beberapa referensi. Kamu belum pernah membaca sumber tersebut.",choices:["Langsung percaya karena jawabannya terlihat ilmiah.","Menganggap semua jawaban AI salah.","Memeriksa kembali sumber dan membandingkan informasi dengan referensi yang dapat dipercaya.","Langsung memasukkan referensi tersebut ke daftar pustaka."],best:2,feedback:"Jawaban AI bisa terdengar meyakinkan tetapi tetap dapat mengandung kesalahan atau referensi yang tidak tepat. Kemampuan memeriksa informasi merupakan bagian penting dari literasi AI.",think:"Kalau AI bisa salah, siapa yang tetap bertanggung jawab atas informasi yang kamu gunakan dalam tugas?"},
+ {theme:"KEMANDIRIAN BELAJAR",text:"Setiap kali mendapat soal yang sulit, kamu langsung bertanya kepada AI sebelum mencoba mengerjakannya sendiri.",choices:["Tetap bertanya kepada AI karena lebih cepat.","Mencoba memahami dan mengerjakan sendiri terlebih dahulu, kemudian menggunakan AI jika membutuhkan bantuan.","Menunggu teman mengerjakan.","Menghindari soal tersebut."],best:1,feedback:"AI bisa menjadi tutor yang membantu, tetapi mencoba terlebih dahulu memberi otak kesempatan untuk berlatih memecahkan masalah. Jika AI selalu digunakan di awal, kemampuan mandiri bisa semakin jarang terlatih.",think:"Apa yang mungkin terjadi pada kemampuanmu memecahkan masalah jika setiap kesulitan langsung diberikan kepada AI?"},
+ {theme:"ETIKA",text:"Kamu mendapat tugas refleksi tentang pengalaman pribadi. Kamu bingung merangkai kata, lalu meminta AI menulis seluruh refleksi berdasarkan cerita singkat yang kamu berikan.",choices:["Menggunakan seluruh tulisan AI karena hasilnya lebih rapi.","Tidak boleh menggunakan AI dalam kondisi apa pun.","Menulis pengalaman dan pemikiran sendiri terlebih dahulu, kemudian menggunakan AI hanya untuk membantu merapikan bahasa.","Meminta AI membuat pengalaman yang lebih menarik."],best:2,feedback:"Untuk tugas reflektif, pengalaman dan makna personal berasal dari diri sendiri. AI boleh membantu menyusun atau memperbaiki bahasa, tetapi tidak seharusnya menggantikan suara dan pemikiran pribadi.",think:"Kalau tulisan tersebut menceritakan pengalamanmu, siapa yang paling memahami pengalaman itu: kamu atau AI?"},
+ {theme:"BATAS PENGGUNAAN",text:"Kamu mulai merasa tidak percaya diri mengerjakan tugas tanpa AI. Bahkan untuk hal sederhana, kamu merasa harus bertanya kepada AI terlebih dahulu.",choices:["Membiarkannya karena AI memang mempermudah hidup.","Menghapus semua aplikasi AI selamanya.","Mulai mengamati kebiasaan tersebut dan menentukan situasi ketika AI memang dibutuhkan.","Meminta AI menentukan kapan kamu boleh menggunakannya."],best:2,feedback:"Masalahnya bukan sekadar seberapa sering AI digunakan, tetapi apakah kamu masih mampu mengambil keputusan dan belajar tanpa selalu bergantung padanya. Membuat batas penggunaan dapat membantu menjaga kemandirian.",think:"Pada kondisi apa kamu merasa AI benar-benar membantu, dan pada kondisi apa kamu sebenarnya masih bisa mencoba sendiri?"}
+];
+
+let idx=0,score=0;
+
+function showPage(id){
+ document.querySelectorAll(".page").forEach(x=>x.classList.add("hidden"));
+ document.getElementById(id).classList.remove("hidden");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function startGame(){
+ idx=0;score=0;
+ showPage("game");
+ renderCheckin();
+}
+function renderCheckin(){
+ document.getElementById("gameTitle").textContent="Check-in";
+ document.getElementById("bar").style.width="12%";
+ document.getElementById("gameContent").innerHTML=`
+ <div class="game-card">
+ <div class="pill">TAHAP 1</div>
+ <h3 style="margin-top:18px;font-size:25px">Seberapa dekat kamu dengan AI?</h3>
+ <p>Pilih yang paling menggambarkan kebiasaanmu. Tidak ada jawaban benar atau salah.</p>
+ <div class="choices">
+ <button class="choice" onclick="beginCases()">Aku biasanya mencoba sendiri dulu sebelum bertanya kepada AI.</button>
+ <button class="choice" onclick="beginCases()">Aku sering menggunakan AI untuk membantu mencari ide atau memahami materi.</button>
+ <button class="choice" onclick="beginCases()">Aku cukup sering meminta AI mengerjakan bagian tugas yang sulit.</button>
+ <button class="choice" onclick="beginCases()">Aku sering merasa lebih mudah menyerahkan hampir seluruh tugas kepada AI.</button>
+ </div></div>`;
+}
+function beginCases(){idx=0;renderCase()}
+function renderCase(){
+ const c=cases[idx];
+ document.getElementById("gameTitle").textContent=`Kartu ${idx+1} dari ${cases.length}`;
+ document.getElementById("bar").style.width=(20+idx*15)+"%";
+ document.getElementById("gameContent").innerHTML=`
+ <div class="game-card">
+ <div class="pill">${c.theme}</div>
+ <div class="case">${c.text}</div>
+ <div class="choices">${c.choices.map((x,i)=>`<button class="choice" onclick="answer(${i})"><b>${String.fromCharCode(65+i)}.</b> ${x}</button>`).join("")}</div>
+ </div>`;
+}
+function answer(choice){
+ const c=cases[idx]; if(choice===c.best)score++;
+ document.getElementById("gameTitle").textContent="Think & Feedback";
+ document.getElementById("bar").style.width=(35+idx*15)+"%";
+ document.getElementById("gameContent").innerHTML=`
+ <div class="game-card">
+ <div class="pill">${choice===c.best?"REFLEKTIF":"COBA PIKIRKAN LAGI"}</div>
+ <h3 style="margin-top:18px;font-size:25px">${choice===c.best?"Pilihan yang cukup bijak 👏":"Pilihanmu menarik untuk dipikirkan 💭"}</h3>
+ <div class="feedback"><b>Feedback</b><br>${c.feedback}</div>
+ <div class="reflect"><b>THINK</b><p>${c.think}</p></div>
+ <div class="actions"><button class="cta" onclick="nextCase()">${idx===cases.length-1?"Lanjut ke Hasil →":"Kartu Berikutnya →"}</button></div>
+ </div>`;
+}
+function nextCase(){
+ if(idx<cases.length-1){idx++;renderCase()}
+ else finishGame();
+}
+function finishGame(){
+ showPage("resultPage");
+ const ratio=score/cases.length;
+ let title,text,pill;
+ if(ratio>=.8){pill="CUKUP REFLEKTIF";title="Kamu sudah cukup sadar dalam menggunakan AI.";text="Kamu terlihat mampu melihat AI sebagai alat bantu, bukan sebagai pengganti seluruh proses belajar. Pertahankan kebiasaan mengecek informasi dan tetap mengerjakan bagian penting dengan kemampuanmu sendiri."}
+ else if(ratio>=.5){pill="PERLU LEBIH SADAR";title="Kamu sudah mulai menemukan batas penggunaan AI.";text="Ada beberapa situasi ketika AI bisa membantu, tetapi penting untuk terus memperhatikan apakah penggunaannya masih mendukung proses belajar atau justru menggantikannya."}
+ else{pill="AI MULAI TERLALU DOMINAN";title="Coba mulai membangun batas penggunaan AI.";text="Hasil permainan menunjukkan beberapa pilihan yang cukup bergantung pada AI. Tidak berarti kamu harus berhenti menggunakan AI, tetapi kamu bisa mulai mencoba mengerjakan sendiri sebelum meminta bantuan."}
+ document.getElementById("profilePill").textContent=pill;
+ document.getElementById("resultTitle").textContent=title;
+ document.getElementById("resultText").textContent=text;
+}
+function saveCommitment(){
+ const v=document.getElementById("commitment").value.trim();
+ const s=document.getElementById("saved");
+ s.classList.remove("hidden");
+ s.textContent=v?`Komitmenmu: “${v}” — mulai dari satu kebiasaan kecil dulu. 🌱`:"Tulis satu komitmen kecil terlebih dahulu ya.";
+}
+</script>
+</body>
+</html>
